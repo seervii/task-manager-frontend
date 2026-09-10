@@ -3,6 +3,8 @@ import { useState, useEffect } from 'react';
 function Projects() {
   const [projects, setProjects] = useState([]);
   const [name, setName] = useState('');
+  const [selectedProject, setSelectedProject] = useState(null);
+  const [tasks, setTasks] = useState([]);
 
   const fetchProjects = async () => {
     const response = await fetch('http://localhost:3000/projects');
@@ -31,12 +33,22 @@ function Projects() {
     fetchProjects();
   };
 
+  const handleSelectProject = async (project) => {
+    setSelectedProject(project);
+    const response = await fetch('http://localhost:3000/tasks/');
+    const data = await response.json();
+    const projectTasks = data.filter((task) => task.project_id === project.id);
+    setTasks(projectTasks);
+  };
+
   return (
     <div>
       <h2>My Projects</h2>
       <ul>
         {projects.map((project) => (
-          <li key={project.id}>{project.name}</li>
+          <li key={project.id} onClick={() => handleSelectProject(project)} style={{ cursor: 'pointer' }}>
+            {project.name}
+          </li>
         ))}
       </ul>
 
@@ -49,6 +61,17 @@ function Projects() {
         />
         <button type="submit">Add Project</button>
       </form>
+
+      {selectedProject && (
+        <div>
+          <h3>Tasks for {selectedProject.name}</h3>
+          <ul>
+            {tasks.map((task) => (
+              <li key={task.id}>{task.title} — {task.status}</li>
+            ))}
+          </ul>
+        </div>
+      )}
     </div>
   );
 }
