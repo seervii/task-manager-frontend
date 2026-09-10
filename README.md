@@ -1,16 +1,35 @@
-# React + Vite
+# Task Manager Frontend
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+React frontend for the Task Manager app — login, view and create Projects, and view/create/delete Tasks within a selected Project.
 
-Currently, two official plugins are available:
+## Why I built this
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Oxc](https://oxc.rs)
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/)
+Built alongside the backend as my first React project — I had no prior frontend experience going in. This was where I learned core React concepts (components, state, hooks, connecting to a REST API) hands-on, by building real, working screens rather than working through isolated exercises.
 
-## React Compiler
+## Features
+- Login form — authenticates against the backend and stores the JWT in `localStorage`
+- View all Projects, fetched live from the API
+- Create new Projects
+- Click a Project to view its Tasks
+- Create new Tasks within a selected Project
+- Delete Projects and Tasks
 
-The React Compiler is not enabled on this template because of its impact on dev & build performances. To add it, see [this documentation](https://react.dev/learn/react-compiler/installation).
+## Tech Stack
+React, Vite
 
-## Expanding the ESLint configuration
+## Setup
+1. Clone the repo
+2. `npm install`
+3. `npm run dev`
+4. Requires the backend running at `http://localhost:3000` — see [task-manager-api](https://github.com/seervii/task-manager-api)
 
-If you are developing a production application, we recommend using TypeScript with type-aware lint rules enabled. Check out the [TS template](https://github.com/vitejs/vite/tree/main/packages/create-vite/template-react-ts) for information on how to integrate TypeScript and [`typescript-eslint`](https://typescript-eslint.io) in your project.
+## Screenshots
+<!-- Add screenshots here, e.g.: -->
+<!-- ![Login screen](./screenshots/login.png) -->
+<!-- ![Projects view](./screenshots/projects.png) -->
+
+## What I'd add next
+- A signup form (currently only available via the backend API directly)
+- Editing task status through the UI (e.g. todo → in-progress → done)
+- Routing between pages (currently a single-page view)
+- General styling — this was built focused on functionality, not visual design
